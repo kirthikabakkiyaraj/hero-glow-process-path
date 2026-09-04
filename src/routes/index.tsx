@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Cpu, Boxes, ShieldCheck, Rocket, Sparkles, LineChart } from "lucide-react";
-import hexBg from "@/assets/hex-bg.jpg";
+import heroPortal from "@/assets/hero-portal.jpeg.asset.json";
 import { Mascot } from "@/components/site/Mascot";
+import { ProcessStrip } from "@/components/site/ProcessStrip";
 import { OrbitShowcase } from "@/components/site/OrbitShowcase";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/Section";
@@ -67,15 +68,23 @@ function Home() {
     <>
       <section className="relative overflow-hidden">
         <img
-          src={hexBg}
+          src={heroPortal.url}
           alt=""
           aria-hidden="true"
           width={1920}
           height={1080}
-          className="absolute inset-0 size-full object-cover opacity-30"
+          className="absolute inset-0 size-full object-cover object-center opacity-50 md:opacity-75"
         />
         <div className="grid-circuit pointer-events-none absolute inset-0" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/70 to-background" />
+        {/* edge fade so the image melts into the page background */}
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 62% 58% at 50% 42%, transparent 25%, var(--background) 96%)",
+          }}
+        />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-background/80 via-background/20 to-background" />
         <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-5 py-20 md:grid-cols-2 md:py-28">
           <Reveal>
             <span className="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-4 py-1 text-xs font-bold tracking-[0.2em] uppercase text-primary">
@@ -140,6 +149,17 @@ function Home() {
             </Reveal>
           ))}
         </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-5 pb-20">
+        <Reveal>
+          <h3 className="text-center font-display text-xl font-bold sm:text-2xl">
+            How we take an idea <span className="text-primary text-glow">from spark to support</span>
+          </h3>
+        </Reveal>
+        <Reveal delay={140} className="mt-10">
+          <ProcessStrip />
+        </Reveal>
       </section>
 
       <section className="relative overflow-hidden border-y border-border bg-surface/40">
